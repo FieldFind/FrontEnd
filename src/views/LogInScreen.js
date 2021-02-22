@@ -55,12 +55,9 @@ export default class LoginScreen extends Component {
         <TouchableOpacity onPress={this.signInWithGoogle}>
           <Image
             style={styles.googleLogo}
-            source={require("../../assets/GoogleLogin.png")}
+            source={require("../../assets/GoogleLogin1.png")}
           />
         </TouchableOpacity>
-
-        <Text> This is cool af, yeahhsss</Text>
-
         <StatusBar style="auto" />
       </View>
     );
