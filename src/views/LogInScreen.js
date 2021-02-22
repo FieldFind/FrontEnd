@@ -26,7 +26,10 @@ export default class LoginScreen extends Component {
       });
 
       if (result.type === "success") {
+
         console.log("LoginScreen.js.js 21 | ", result.user.givenName);
+
+
         this.props.navigation.navigate("Profile", {
           username: result.user.givenName,
         }); //after Google login redirect to Profile
@@ -35,7 +38,9 @@ export default class LoginScreen extends Component {
         return { cancelled: true };
       }
     } catch (e) {
+
       console.log("LoginScreen.js.js 30 | Error with login", e);
+
       return { error: true };
     }
   };
@@ -53,7 +58,9 @@ export default class LoginScreen extends Component {
             source={require("../../assets/GoogleLogin.png")}
           />
         </TouchableOpacity>
+
         <Text> This is cool af, yeahhsss</Text>
+
         <StatusBar style="auto" />
       </View>
     );
@@ -76,4 +83,6 @@ const styles = StyleSheet.create({
     width: 295,
     height: 120,
   },
+
 });
+
