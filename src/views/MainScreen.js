@@ -16,6 +16,10 @@ export default class MainScreen extends Component {
             })
           }
         />
+        <Button 
+          title="Reservations" 
+          onPress={() => this.props.navigation.navigate("Reservations")}
+        />
       </View>
     );
   }
