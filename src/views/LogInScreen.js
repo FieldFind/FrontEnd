@@ -26,14 +26,25 @@ export default class LoginScreen extends Component {
       });
 
       if (result.type === "success") {
-        this.props.navigation.navigate("Profile", {
-          username: result.user.givenName,
-        }); //after Google login redirect to Profile
+
+        console.log("LoginScreen.js.js 21 | ", result.user.givenName);
+
+
+        // this.props.navigation.navigate("Profile", {
+        //   username: result.user.givenName,
+        // }); 
+        this.props.navigation.navigate("Main", {
+             username: result.user.givenName,
+           });
+        //after Google login redirect to Profile
         return result.accessToken;
       } else {
         return { cancelled: true };
       }
     } catch (e) {
+
+      console.log("LoginScreen.js.js 30 | Error with login", e);
+
       return { error: true };
     }
   };
@@ -48,7 +59,7 @@ export default class LoginScreen extends Component {
         <TouchableOpacity onPress={this.signInWithGoogle}>
           <Image
             style={styles.googleLogo}
-            source={require("../../assets/GoogleLogin.png")}
+            source={require("../../assets/GoogleLogin1.png")}
           />
         </TouchableOpacity>
         <StatusBar style="auto" />
@@ -73,4 +84,6 @@ const styles = StyleSheet.create({
     width: 295,
     height: 120,
   },
+
 });
+

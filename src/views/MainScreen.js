@@ -2,21 +2,24 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import MapView from "../components/Map";
 
-export default class ProfileScreen extends Component {
+export default class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Profile Screen </Text>
-        <Text>Welcome, {this.props.navigation.getParam("username")}</Text>
+        <MapView />
         <Button
-          title="Sign out"
-          onPress={() => this.props.navigation.navigate("Login")}
+          style={styles.Button}
+          title="Profile"
+          onPress={() =>
+            this.props.navigation.navigate("Profile", {
+              username: this.props.navigation.getParam("username"),
+            })
+          }
         />
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
