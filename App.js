@@ -1,14 +1,9 @@
-import {  createAppContainer, createSwitchNavigator } from 'react-navigation';
-import LoginScreen from './src/views/LogInScreen';
-import ProfileScreen from './src/views/ProfileScreen';
+import React from 'react';
+import Navigation from './src/components/Navigation'
 
-
-const MainNavigator = createSwitchNavigator({
-  Login: { screen: LoginScreen },
-  Profile: { screen: ProfileScreen },
-});
-
-const App = createAppContainer(MainNavigator);
-
-export default App;
+export default function App() {
+  return (
+    <Navigation/>
+  );
+}
 
