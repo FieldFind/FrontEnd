@@ -8,6 +8,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+<<<<<<< HEAD
+=======
+
+>>>>>>> development
 
 # macOS
 .DS_Store
