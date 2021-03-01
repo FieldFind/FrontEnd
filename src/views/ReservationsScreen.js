@@ -17,7 +17,7 @@ class ReservationsScreen extends Component{
       .then((json) => {
         this.setState({ data: json });
       })
-      .catch((error) => console.error(error))
+      /*.catch((error) => console.error(error))*/
       .finally(() => {
         this.setState({ isLoading: false });
       });
