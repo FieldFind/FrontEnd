@@ -27,7 +27,7 @@ export default class LoginScreen extends Component {
 
       if (result.type === "success") {
 
-        console.log("LoginScreen.js.js 21 | ", result.user.givenName);
+        console.log("LoginScreen.js 21 | ", result.user.givenName);
 
 
         // this.props.navigation.navigate("Profile", {
@@ -43,7 +43,7 @@ export default class LoginScreen extends Component {
       }
     } catch (e) {
 
-      console.log("LoginScreen.js.js 30 | Error with login", e);
+      console.log("LoginScreen.js 30 | Error with login", e);
 
       return { error: true };
     }
@@ -84,5 +84,4 @@ const styles = StyleSheet.create({
     width: 295,
     height: 120,
   },
-
 });
