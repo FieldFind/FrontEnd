@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
     },
 });
 
-const ReservationsScreen = () => {
-  return (
-    <View style={styles.container} >
-        <Text>Reservations Screen</Text>
-    </View>
-  );
+class ReservationsScreen extends Component{
+  render() {
+    return (
+      <Text>ReservationsScreen</Text>
+    );
+  }
 }
 
 export default ReservationsScreen;
