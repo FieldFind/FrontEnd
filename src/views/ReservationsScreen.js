@@ -44,4 +44,20 @@ class ReservationsScreen extends Component{
   }
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#CDD7D6',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 20,
+  },
+});
+
 export default ReservationsScreen;
