@@ -10,17 +10,19 @@ class ReservationsScreen extends Component{
       isLoading: true
     };
   }
-
-  componentDidMount() {
-    fetch('https://fieldfind-backend.herokuapp.com/reservas/')
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({ data: json });
-      })
-      /*.catch((error) => console.error(error))*/
-      .finally(() => {
-        this.setState({ isLoading: false });
-      });
+/** https://fieldfind-backend.herokuapp.com/reservas/*/
+ async componentDidMount() {
+    try {
+      let response = await fetch('https://fieldfind-backend.herokuapp.com/reservas/');
+      let json = await response.json();
+      this.setState({ data: json });
+      console.log(json);
+      //return json.movies;
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setState({ isLoading: false });
+    }
   }
 
   render() {
@@ -31,7 +33,7 @@ class ReservationsScreen extends Component{
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
               <Text>{item.espacio.nombre_espacio}</Text>
             )}
