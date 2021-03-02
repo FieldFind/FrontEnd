@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
+import FooterNav from '../components/FooterNav';
 
 class ReservationsScreen extends Component{
   constructor(props) {
@@ -58,7 +59,9 @@ class ReservationsScreen extends Component{
             )}
           />
         )}
+        <FooterNav/>
       </SafeAreaView>
+      
     );
   }
 };
