@@ -10,14 +10,12 @@ class ReservationsScreen extends Component{
       isLoading: true
     };
   }
-/** https://fieldfind-backend.herokuapp.com/reservas/*/
+
  async componentDidMount() {
     try {
       let response = await fetch('https://fieldfind-backend.herokuapp.com/reservas/');
       let json = await response.json();
       this.setState({ data: json });
-      console.log(json);
-      //return json.movies;
     } catch (error) {
       console.error(error);
     } finally {
