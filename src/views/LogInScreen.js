@@ -9,6 +9,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+const fieldFindLogo = require("../../assets/LogoFieldFind.png");
+const googleLogo = require("../../assets/GoogleLogin1.png")
+
 import * as Google from "expo-google-app-auth";
 
 const IOS_CLIENT_ID =
@@ -54,12 +57,12 @@ export default class LoginScreen extends Component {
       <View style={styles.container}>
         <Image
           style={styles.tinyLogo}
-          source={require("../../assets/LogoFieldFind.png")}
+          source={fieldFindLogo}
         />
         <TouchableOpacity onPress={this.signInWithGoogle}>
           <Image
             style={styles.googleLogo}
-            source={require("../../assets/GoogleLogin1.png")}
+            source={googleLogo}
           />
         </TouchableOpacity>
         <StatusBar style="auto" />
@@ -85,3 +88,4 @@ const styles = StyleSheet.create({
     height: 120,
   },
 });
+
