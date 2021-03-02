@@ -9,7 +9,6 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import Navigation from '../components/Navigation';
 
 class ReservationsScreen extends Component{
   constructor(props) {
