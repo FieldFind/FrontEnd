@@ -39,7 +39,7 @@ class ReservationsScreen extends Component{
       <SafeAreaView style={styles.container}>
         <View style={styles.screenHeader}>
           <Text style={styles.screenHeaderText}>Reservations</Text>
-          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Main")}}>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Main")}}> //constructor(props) needed
             <View>
               <Image 
               source={require('../../assets/outline_home_black_48dp.png')}
