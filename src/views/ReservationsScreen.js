@@ -16,7 +16,7 @@ class ReservationsScreen extends Component{
     super(props);
 
     this.state = {
-      data: [],
+      data: {},
       isLoading: true
     };
   }
@@ -40,22 +40,28 @@ class ReservationsScreen extends Component{
       <SafeAreaView style={styles.container}>
         <View style={styles.screenHeader}>
           <Text style={styles.screenHeaderText}>Reservations</Text>
-          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Main")}}> //constructor(props) needed
-            <View>
+          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Main")}}>
               <Image 
               source={require('../../assets/outline_home_black_48dp.png')}
               style={styles.screenHeaderImage}/>
-            </View>
           </TouchableOpacity>
         </View>
-        {isLoading ? <ActivityIndicator/> : (
+        {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
           <FlatList
             data={data}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => (
-              <View style={styles.item}>
-                <Text style={styles.itemText}>{item.espacio.nombre_espacio}</Text>
-              </View>
+              <TouchableOpacity 
+              activeOpacity={0.5}
+              onPress={()=>{this.props.navigation.navigate("DetailReservation",{item: item})}}>              
+                <Image //placeholder image
+                  source={{uri: 'https://images.pexels.com/photos/4071393/pexels-photo-4071393.jpeg'}}
+                  style={{width:'100%', height: 150}} />         
+                <View style={styles.item}>
+                
+                  <Text style={styles.itemText}>{item.espacio.nombre_espacio}</Text>
+                </View>
+              </TouchableOpacity>
             )}
           />
         )}
