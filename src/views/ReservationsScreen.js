@@ -40,11 +40,6 @@ class ReservationsScreen extends Component{
       <SafeAreaView style={styles.container}>
         <View style={styles.screenHeader}>
           <Text style={styles.screenHeaderText}>Reservations</Text>
-          <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Main")}}>
-              <Image 
-              source={require('../../assets/outline_home_black_48dp.png')}
-              style={styles.screenHeaderImage}/>
-          </TouchableOpacity>
         </View>
         {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
           <FlatList
@@ -65,7 +60,6 @@ class ReservationsScreen extends Component{
             )}
           />
         )}
-        <FooterNav/>
       </SafeAreaView>
       
     );
