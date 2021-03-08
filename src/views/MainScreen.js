@@ -1,31 +1,15 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Button, Image } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import MapView from "../components/Map";
 import SearchBar from '../components/SearchBar'
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import ReservationsScreen from '../views/ReservationsScreen';
-//import FooterNav from '../components/FooterNav'
+import ProfileScreen from '../views/ProfileScreen';
 
-const mapIcon = require('../../assets/mapa.png');
-//const calendarIcon = require('../../assets/Calendario.png');
-const userIcon = require('../../assets/User.png');
-const settingIcon = require('../../assets/setting.png')
 const filterIcon = require('../../assets/filter.png')
 
-
 class MainScreen extends Component {
-  /*
-  static defaultNavigationOptions = {
-    tabBarIcon:({focused}) => {
-      const iconimg = focused ? require('../../assets/mapa.png') : require('../../assets/mapa.png');
-      return (
-        <Image 
-            source={iconimg}
-            style={{width:10, height:10}}
-        />);
-    }
-  };*/
 
   render() {
     return (
@@ -44,27 +28,32 @@ class MainScreen extends Component {
         <MapView/>
         
       </View>
-    );/**<FooterNav style={styles.FooterNav}/> */
+    );
   }
 }
 
 const TabNavigator = createBottomTabNavigator({
     Main: MainScreen,
-    Reservations: ReservationsScreen},
+    Reservations: ReservationsScreen,
+    Profile: ProfileScreen},
     {
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => {
           const { routeName } = navigation.state;
-          let iconName;
+          let iconSource;
           let tintColor;
           if(routeName == 'Main'){
-            iconName = focused ? require('../../assets/mapa.png') : require('../../assets/mapa.png');
+            iconSource = require('../../assets/mapa.png');
             tintColor = focused ? 'blue' : 'gray';
           }else if(routeName == 'Reservations'){
-            iconName = focused ? require('../../assets/Calendario.png') : require('../../assets/Calendario.png');
+            iconSource = require('../../assets/Calendario.png');
             tintColor = focused ? 'blue' : 'gray';
           }
-          return <Image source={iconName} style={{height:30, width:30}} tintColor={tintColor}/>
+          else if(routeName == 'Profile'){
+            iconSource = require('../../assets/User.png');
+            tintColor = focused ? 'blue' : 'gray';
+          }
+          return <Image source={iconSource} style={{height:30, width:30}} tintColor={tintColor}/>
         }
       }),
       tabBarOptions: {

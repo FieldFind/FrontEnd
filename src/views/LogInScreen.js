@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import {
   Image,
   StatusBar,
-  Text,
   View,
   StyleSheet,
-  Button,
   TouchableOpacity,
 } from "react-native";
 
@@ -29,25 +27,18 @@ export default class LoginScreen extends Component {
       });
 
       if (result.type === "success") {
-
         console.log("LoginScreen.js 21 | ", result.user.givenName);
 
-
-        // this.props.navigation.navigate("Profile", {
-        //   username: result.user.givenName,
-        // }); 
         this.props.navigation.navigate("Main", {
              username: result.user.givenName,
            });
-        //after Google login redirect to Profile
+
         return result.accessToken;
       } else {
         return { cancelled: true };
       }
     } catch (e) {
-
       console.log("LoginScreen.js 30 | Error with login", e);
-
       return { error: true };
     }
   };

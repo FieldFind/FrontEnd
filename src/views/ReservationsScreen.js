@@ -9,7 +9,6 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import FooterNav from '../components/FooterNav';
 
 class ReservationsScreen extends Component{
   constructor(props) {
@@ -49,19 +48,17 @@ class ReservationsScreen extends Component{
               <TouchableOpacity 
               activeOpacity={0.5}
               onPress={()=>{this.props.navigation.navigate("DetailReservation",{item: item})}}>              
-                <Image //placeholder image
-                  source={{uri: 'https://images.pexels.com/photos/4071393/pexels-photo-4071393.jpeg'}}
+                <Image
+                  source={{uri: item.espacio.url_imagen}}
                   style={{width:'100%', height: 150}} />         
-                <View style={styles.item}>
-                
+                <View style={styles.item}>                
                   <Text style={styles.itemText}>{item.espacio.nombre_espacio}</Text>
                 </View>
               </TouchableOpacity>
             )}
           />
         )}
-      </SafeAreaView>
-      
+      </SafeAreaView>      
     );
   }
 };

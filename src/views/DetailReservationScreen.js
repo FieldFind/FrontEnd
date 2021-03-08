@@ -19,10 +19,10 @@ class DetailReservation extends Component{
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:1}}>
-                    <Image //placeholder image 
-                        source={{uri: 'https://images.pexels.com/photos/4071393/pexels-photo-4071393.jpeg'}}
+                    <Image
+                        source={{uri: this.props.navigation.getParam("item").espacio.url_imagen}}
                         style={{flex:1}} />
-                    </View>
+                </View>
                 <View style={{flex:2,backgroundColor:'#A8FAED'}}>
                     <Text>{this.props.navigation.getParam("item").espacio.nombre_espacio}</Text>
                 </View>
