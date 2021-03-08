@@ -9,12 +9,11 @@ import {
 } from 'react-native';
 
 class DetailReservation extends Component{
-
     render(){
         return(
             <SafeAreaView style={styles.container}>
                 <View style={{height:'10%',backgroundColor:'#384650',justifyContent:'center'}}>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Reservations")}}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Reservations")}} style={{width:'10%'}}>
                         <Image source={require('../../assets/sharp_arrow_back_black_48dp.png')}/>
                     </TouchableOpacity>
                 </View>
