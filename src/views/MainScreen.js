@@ -10,23 +10,32 @@ import ProfileScreen from '../views/ProfileScreen';
 const filterIcon = require('../../assets/filter.png')
 
 class MainScreen extends Component {
-
   render() {
-    return (
+    return (/*
       <View style={styles.container}>
         <Text>Field Find</Text>
         <View style={styles.bar} >
           <View style={styles.searchBox} >
             <View style={styles.searchBar}>
         <SearchBar/>
-        </View>
+            </View>
         <Text style={{top:'100%'}}> Field Find </Text>
         <Image source={filterIcon} 
         style={styles.filterIcon}/>
-        </View>
+          </View>
         </View>
         <MapView/>
-        
+      </View>*/
+      <View style={styles.container}>
+          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'center',alignItems:'center'}}>
+              <View style={{width:'85%'}}>
+                <SearchBar/>
+              </View>              
+              <Image 
+                source={filterIcon}
+                style={{width:30, height:30}}/>
+          </View>
+          <MapView/>       
       </View>
     );
   }
@@ -67,8 +76,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    //alignItems: "center",
+    //justifyContent: "center",
   },
   FooterNav: {
     position: 'absolute'
@@ -102,10 +111,11 @@ const styles = StyleSheet.create({
     left: '3%'
   },
   filterIcon: {
-    position: 'absolute',
-    right:'0%',
-    width: 34,
-    height: 34
+    //position: 'absolute',
+    //right:'0%',
+    flex:1,
+    width: 30,
+    height: 30
   }
 });
 
