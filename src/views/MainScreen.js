@@ -7,32 +7,16 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import ReservationsScreen from '../views/ReservationsScreen';
 import ProfileScreen from '../views/ProfileScreen';
 
-const filterIcon = require('../../assets/filter.png')
-
 class MainScreen extends Component {
   render() {
-    return (/*
+    return (
       <View style={styles.container}>
-        <Text>Field Find</Text>
-        <View style={styles.bar} >
-          <View style={styles.searchBox} >
-            <View style={styles.searchBar}>
-        <SearchBar/>
-            </View>
-        <Text style={{top:'100%'}}> Field Find </Text>
-        <Image source={filterIcon} 
-        style={styles.filterIcon}/>
-          </View>
-        </View>
-        <MapView/>
-      </View>*/
-      <View style={styles.container}>
-          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'center',alignItems:'center'}}>
+          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'space-between',alignItems:'center',padding:'5%'}}>
               <View style={{width:'85%'}}>
                 <SearchBar/>
               </View>              
               <Image 
-                source={filterIcon}
+                source={require('../../assets/filter.png')}
                 style={{width:30, height:30}}/>
           </View>
           <MapView/>       
@@ -74,48 +58,7 @@ const TabNavigator = createBottomTabNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    //alignItems: "center",
-    //justifyContent: "center",
-  },
-  FooterNav: {
-    position: 'absolute'
-  },
-  bar: {
-    zIndex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "13%",
-    top: '0%',
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9,
-  },
-  searchBar: {
-    position: "absolute",
-    left: '10%',
-    width: '80%',
-  },
-  searchBox: {
-    position: "absolute",
-    top: '60%',
-    width: '95%',
-    left: '3%'
-  },
-  filterIcon: {
-    //position: 'absolute',
-    //right:'0%',
-    flex:1,
-    width: 30,
-    height: 30
+    flex: 1
   }
 });
 
