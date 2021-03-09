@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 const fieldFindLogo = require("../../assets/LogoFieldFind.png");
-const googleLogo = require("../../assets/GoogleLogin1.png")
+const googleLogo = require("../../assets/GoogleLogin1.png");
 
 import * as Google from "expo-google-app-auth";
 
@@ -79,4 +79,3 @@ const styles = StyleSheet.create({
     height: 120,
   },
 });
-
