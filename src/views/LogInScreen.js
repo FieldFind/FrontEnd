@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import { logIn, isLoggedIn } from "../utils/SessionController";
+
 const fieldFindLogo = require("../../assets/LogoFieldFind.png");
 const googleLogo = require("../../assets/GoogleLogin1.png");
 
@@ -18,6 +20,16 @@ const ANDROID_CLIENT_ID =
   "951963137071-i39cq9tc88r9gvom3bebsfkv4606nfr0.apps.googleusercontent.com";
 
 export default class LoginScreen extends Component {
+  componentDidMount() {
+    isLoggedIn().then((res) =>
+      res ? this.props.navigation.navigate("Menu") : null
+    );
+  }
+  storeSession = async (userData) => {
+    await logIn(userData);
+    this.props.navigation.navigate("Menu");
+  };
+
   signInWithGoogle = async () => {
     try {
       const result = await Google.logInAsync({
@@ -28,10 +40,14 @@ export default class LoginScreen extends Component {
 
       if (result.type === "success") {
         console.log("LoginScreen.js 21 | ", result.user.givenName);
-
+        const userData = {
+          email: result.user.email,
+          name: result.user.name,
+        };
+        this.storeSession(userData);
         this.props.navigation.navigate("Main", {
-             username: result.user.givenName,
-           });
+          username: result.user.givenName,
+        });
 
         return result.accessToken;
       } else {
@@ -46,15 +62,9 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.tinyLogo}
-          source={fieldFindLogo}
-        />
+        <Image style={styles.tinyLogo} source={fieldFindLogo} />
         <TouchableOpacity onPress={this.signInWithGoogle}>
-          <Image
-            style={styles.googleLogo}
-            source={googleLogo}
-          />
+          <Image style={styles.googleLogo} source={googleLogo} />
         </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
