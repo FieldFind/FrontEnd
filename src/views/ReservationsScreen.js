@@ -83,24 +83,13 @@ const styles = StyleSheet.create({
   screenHeader:{
     height:'15%',
     backgroundColor: '#384650',
-    flexDirection:'row',
-    justifyContent:'space-between'
+    padding:'2%',
+    justifyContent:'flex-end'
   },
   screenHeaderText:{
     color:'#ffffff',
     fontSize:25,
-    fontWeight:'bold',
-    marginVertical:0,
-    marginHorizontal:10,
-    alignSelf:'flex-end'
-  },
-  screenHeaderImage:{
-    marginRight:'10%',
-    marginTop:'10%',
-    tintColor:'#ffffff',
-    height: 30,
-    width: 30,
-    alignSelf:'flex-end'
+    fontWeight:'bold'
   }
 });
 

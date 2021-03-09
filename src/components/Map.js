@@ -1,6 +1,6 @@
 import * as React from "react";
 import MapView from "react-native-maps";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function App() {
   return (
@@ -14,15 +14,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    //backgroundColor: "#fff",
-    //alignItems: "center",
-    //justifyContent: "center",
+    flex: 1
   },
   map: {
     zIndex: -1,
     flex:1
-    //width: Dimensions.get("window").width,
-    //height: Dimensions.get("window").height,
   },
 });
