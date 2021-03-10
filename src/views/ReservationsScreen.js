@@ -24,7 +24,7 @@ class ReservationsScreen extends Component{
     try {
       let response = await fetch('https://fieldfind-backend.herokuapp.com/reservas/');
       let json = await response.json();
-      this.setState({ data: json });
+      this.setState({ data: json }, ()=> {console.log(json[0].espacio.latitud)});
     } catch (error) {
       console.error(error);
     } finally {
