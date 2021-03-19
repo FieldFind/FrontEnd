@@ -29,10 +29,16 @@ class DetailReservation extends Component{
         }
     }
 
+    twelveHoursTimeString = (timeString)=>{
+        var h = timeString % 12 || 12;
+        var ampm = (h < 12 || h === 24) ? "AM" : "PM";
+        return h +" "+ampm;
+    }
+
     timeLimits = (limit,hourRange)=>{
         let indexLoc = hourRange.indexOf('-');
         let leftLim = hourRange.substring(0,indexLoc);
-        let rightLim = hourRange.substring(indexLoc+1);;
+        let rightLim = hourRange.substring(indexLoc+1);
         switch(limit){
             case 0: return leftLim;
             case 1: return rightLim;
@@ -48,36 +54,34 @@ class DetailReservation extends Component{
         let hourRange;
         let currentHours = this.state.time.getHours();
         switch(this.state.time.getDay()){
-            /*
             case(0):
                 hourRange = String(this.state.data.Domingo);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
             case(1):
                 hourRange = String(this.state.data.Lunes);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';*/
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
             case(2):
                 hourRange = String(this.state.data.Martes);
                 currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
                 ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
-                /*
             case(3):
                 hourRange = String(this.state.data.Miercoles);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
             case(4):
                 hourRange = String(this.state.data.Jueves);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
             case(5):
                 hourRange = String(this.state.data.Viernes);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
             case(6):
                 hourRange = String(this.state.data.Sabado);
-                return currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
-                ? 'gray': 'green';*/
+                currentHours < parseInt(this.timeLimits(0,hourRange),10) || currentHours > parseInt(this.timeLimits(1,hourRange),10)
+                ? timeObject.colorIndicator = 'gray': timeObject.colorIndicator = 'green';
         }
         timeObject.leftHourLim = this.timeLimits(0,hourRange);
         timeObject.rightHourLim = this.timeLimits(1,hourRange);
@@ -85,7 +89,6 @@ class DetailReservation extends Component{
     }
 
     render(){
-        const {data, time} = this.state;
         return(
             <SafeAreaView style={styles.container}>
                 <View style={{height:'10%',backgroundColor:'#384650',justifyContent:'center'}}>
@@ -100,8 +103,10 @@ class DetailReservation extends Component{
                 </View>
                 <View style={{flex:2,backgroundColor:'#A8FAED'}}>
                     <Text style={{fontSize:20}}>{this.props.navigation.getParam("item").espacio.nombre_espacio}</Text>
-                    <Text style={{fontSize:20,color:this.timeIndicator().colorIndicator}}>Open</Text>
-                    <Text style={{fontSize:20}}>Closes {this.timeIndicator().rightHourLim}</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:20,color:this.timeIndicator().colorIndicator}}>Open ∙</Text>
+                        <Text style={{fontSize:20,marginLeft:5}}>Closes {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}</Text>
+                    </View>
                 </View>
             </SafeAreaView>
         );
