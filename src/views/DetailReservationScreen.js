@@ -101,11 +101,32 @@ class DetailReservation extends Component{
                         source={{uri: this.props.navigation.getParam("item").espacio.url_imagen}}
                         style={{flex:1}} />
                 </View>
-                <View style={{flex:2,backgroundColor:'#A8FAED'}}>
+                <View style={{flex:2}}>                    
                     <Text style={{fontSize:20}}>{this.props.navigation.getParam("item").espacio.nombre_espacio}</Text>
+                    <Text>{this.props.navigation.getParam("item").espacio.tipo_espacio}</Text>                    
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:20,color:this.timeIndicator().colorIndicator}}>Open ∙</Text>
-                        <Text style={{fontSize:20,marginLeft:5}}>Closes {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}</Text>
+                        <Text style={{color:this.timeIndicator().colorIndicator}}>Open ∙</Text>
+                        <Text style={{marginLeft:5}}>Closes {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>                    
+                        <Text>Latitud: {this.props.navigation.getParam("item").espacio.latitud}, </Text>
+                        <Text>Longitud: {this.props.navigation.getParam("item").espacio.longitud}</Text>
+                    </View>
+                    <Text style={{textDecorationLine:'underline'}}>Ver en el mapa</Text>
+                    <View style={{borderWidth:1,marginVertical:'20%',marginHorizontal:'5%',justifyContent:'space-between'}}>
+                        <Text style={{alignSelf:'center'}}>Detalles</Text>
+                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                                <View>
+                                    <Text>Contacto:</Text>
+                                </View>
+                                <View>
+                                    <Text>Total a pagar:</Text>
+                                </View>
+                                <View>
+                                    <Text>(Hoy)</Text>
+                                </View>
+                        </View>
+                        <Text style={{color:'red',alignSelf:'center'}}>Cancelar reserva</Text>
                     </View>
                 </View>
             </SafeAreaView>
