@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View, Image, Modal, Text } from "react-native";
 
+import SpaceModal from "./Modal";
+import { Button } from "react-native-elements/dist/buttons/Button";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { clockRunning } from "react-native-reanimated";
 
 export default function App() {
-
   const [spaces, setSpaces] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSpace, setCurrentSpace] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getSpaces = async () => {
     try {
@@ -27,18 +32,38 @@ export default function App() {
   useEffect(() => {
     getSpaces();
   }, []);
-   
+
   return (
     <View style={styles.container}>
       <MapView style={styles.map}>
-
-        {isLoading ? spaces.map((space) => (
-          <Marker key= {space.id} coordinate= {{
-            longitude: space.longitud,
-            latitude: space.latitud
-          }}></Marker>
-          
-        )) : null}
+        {isLoading
+          ? spaces.map((space) => (
+              <Marker
+                key={space.id}
+                coordinate={{
+                  longitude: space.longitud,
+                  latitude: space.latitud,
+                }}
+                description="Un espacio chill"
+              >
+                <TouchableOpacity onPress={() => {setIsModalOpen(true); setCurrentSpace(space)} }>
+                  
+                  <Image
+                    style={{ height: 50, width: 50 }}
+                    source={require("../../assets/soccerBall.png")}
+                  />
+                </TouchableOpacity>
+              </Marker>
+            ))
+          : null}
+        <View>
+          {isModalOpen ? (
+            <View>
+              <SpaceModal space={currentSpace}/>
+              <Text > Bruh </Text>
+            </View>
+          ) : null}
+        </View>
       </MapView>
     </View>
   );
