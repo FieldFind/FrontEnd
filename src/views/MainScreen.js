@@ -27,17 +27,10 @@ class MainScreen extends Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-<<<<<<< HEAD
     Mapa: MainScreen,
     Reservaciones: ReservationsScreen,
     Perfil: ProfileScreen,
     Soporte: SupportScreen},
-=======
-    Main: MainScreen,
-    Reservations: ReservationsScreen,
-    Profile: ProfileScreen,
-    Support: SupportScreen},
->>>>>>> d2e6611781d8a2e2ff33a55082aa8ba2ec802381
     {
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => {
@@ -55,11 +48,7 @@ const TabNavigator = createBottomTabNavigator({
             iconSource = require('../../assets/User.png');
             tintColor = focused ? 'blue' : 'gray';
           }
-<<<<<<< HEAD
           else if(routeName == 'Soporte'){
-=======
-          else if(routeName == 'Support'){
->>>>>>> d2e6611781d8a2e2ff33a55082aa8ba2ec802381
             iconSource = require('../../assets/Help.png');
             tintColor = focused ? 'blue' : 'gray';
           }
