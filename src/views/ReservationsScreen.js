@@ -34,12 +34,14 @@ class ReservationsScreen extends Component{
 
   render() {
     const { data, isLoading } = this.state;
+    /**
+     *  <View style={styles.screenHeader}>
+          <Text style={styles.screenHeaderText}>Reservaciones</Text>
+        </View> 
+     */
 
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.screenHeader}>
-          <Text style={styles.screenHeaderText}>Reservaciones</Text>
-        </View>
         {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
           <FlatList
             data={data}

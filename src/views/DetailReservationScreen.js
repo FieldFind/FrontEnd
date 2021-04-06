@@ -126,7 +126,7 @@ class DetailReservation extends Component{
                                     <Text>(Hoy)</Text>
                                 </View>
                         </View>
-                        <Text style={{color:'red',alignSelf:'center'}}>Cancelar reserva</Text>
+                        <Text style={{color:'red',alignSelf:'center'}}>Cancelar</Text>
                     </View>
                 </View>
             </SafeAreaView>
