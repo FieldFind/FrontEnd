@@ -41,25 +41,37 @@ class ReservationsScreen extends Component{
      */
 
     return (
-      <SafeAreaView style={styles.container}>
-        {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
-          <FlatList
-            data={data}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => (
-              <TouchableOpacity 
+      <SafeAreaView 
+        style={styles.container}>
+        {isLoading ? 
+        <ActivityIndicator 
+          color='blue' 
+          size='large' 
+          style={{
+              alignSelf:'center',
+              marginTop:'50%'}}/> : 
+        (<FlatList
+          data={data}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity 
               activeOpacity={0.5}
-              onPress={()=>{this.props.navigation.navigate("DetailReservation",{item: item})}}>              
+              onPress={()=>{
+                this.props.navigation.navigate("DetailReservation",
+                {item: item})}}>              
                 <Image
                   source={{uri: item.espacio.url_imagen}}
-                  style={{width:'100%', height: 150}} />         
-                <View style={styles.item}>                
-                  <Text style={styles.itemText}>{item.espacio.nombre_espacio}</Text>
+                  style={{width:'100%', height: 150}}/>         
+                <View 
+                  style={styles.item}>                
+                  <Text 
+                    style={styles.itemText}>{
+                      item.espacio.nombre_espacio}
+                  </Text>
                 </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             )}
-          />
-        )}
+        />)}
       </SafeAreaView>      
     );
   }

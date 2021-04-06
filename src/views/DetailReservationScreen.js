@@ -87,46 +87,138 @@ class DetailReservation extends Component{
         timeObject.rightHourLim = this.timeLimits(1,hourRange);
         return timeObject;
     }
-
-    render(){
-        return(
-            <SafeAreaView style={styles.container}>
-                <View style={{height:'10%',backgroundColor:'#384650',justifyContent:'center'}}>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Reservaciones")}} style={{width:'20%'}}>
-                        <Image source={require('../../assets/sharp_arrow_back_black_48dp.png')}/>
-                    </TouchableOpacity>
-                </View>
-                <View style={{flex:1}}>
-                    <Image
-                        source={{uri: this.props.navigation.getParam("item").espacio.url_imagen}}
-                        style={{flex:1}} />
-                </View>
-                <View style={{flex:2}}>                    
-                    <Text style={{fontSize:20}}>{this.props.navigation.getParam("item").espacio.nombre_espacio}</Text>
-                    <Text>{this.props.navigation.getParam("item").espacio.tipo_espacio}</Text>                    
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{color:this.timeIndicator().colorIndicator}}>Open ∙</Text>
-                        <Text style={{marginLeft:5}}>Closes {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}</Text>
-                    </View>
+/**
                     <View style={{flexDirection:'row'}}>                    
                         <Text>Latitud: {this.props.navigation.getParam("item").espacio.latitud}, </Text>
                         <Text>Longitud: {this.props.navigation.getParam("item").espacio.longitud}</Text>
                     </View>
-                    <Text style={{textDecorationLine:'underline'}}>Ver en el mapa</Text>
-                    <View style={{borderWidth:1,marginVertical:'20%',marginHorizontal:'5%',justifyContent:'space-between'}}>
-                        <Text style={{alignSelf:'center'}}>Detalles</Text>
-                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View>
-                                    <Text>Contacto:</Text>
+ */
+    render(){
+        return(
+            <SafeAreaView 
+                style={styles.container}>
+                <View 
+                    style={{
+                        height:'10%',
+                        backgroundColor:'#384650',
+                        justifyContent:'center'}}>
+                    <TouchableOpacity 
+                        onPress={()=>{
+                            this.props.navigation.navigate("Reservaciones")}} 
+                            style={{width:'20%'}}>
+                        <Image 
+                            source={require('../../assets/sharp_arrow_back_black_48dp.png')}/>
+                    </TouchableOpacity>
+                </View>
+                <View 
+                    style={{flex:1}}>
+                    <Image
+                        source={{uri: this.props.navigation.getParam("item").espacio.url_imagen}}
+                        style={{flex:1}} />
+                </View>
+                <View 
+                    style={styles.infoArea}>            
+                    <Text 
+                        style={{fontSize:25}}>
+                            {this.props.navigation.getParam("item").espacio.nombre_espacio}
+                    </Text>
+                    <Text 
+                        style={{color:'gray'}}>
+                            {this.props.navigation.getParam("item").espacio.tipo_espacio}
+                    </Text>
+                    <View
+                        style={{flexDirection:'row'}}>
+                        <Text 
+                            style={{color:this.timeIndicator().colorIndicator}}>
+                                Abierto ∙
+                        </Text>
+                        <Text 
+                            style={{marginLeft:5}}>
+                                Cierra {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}
+                        </Text>
+                    </View>
+                    <TouchableOpacity
+                        onPress={()=>{
+                            this.props.navigation.navigate("Mapa",{
+                                latitud:this.props.navigation.getParam("item").espacio.latitud,
+                                longitud:this.props.navigation.getParam("item").espacio.longitud
+                            })}} 
+                        style={{width:'50%'}}>
+                        <Text 
+                            style={{
+                                textDecorationLine:'underline',
+                                fontSize:15,
+                                color:'gray',
+                                fontWeight:'bold'}}>
+                                    Ver en el mapa
+                        </Text>
+                    </TouchableOpacity>
+                    <View 
+                        style={{
+                            borderWidth:1,
+                            borderColor:'#808B96',
+                            height:'45%',
+                            padding:5,
+                            marginVertical:'20%',
+                            marginHorizontal:'5%',
+                            justifyContent:'space-between'}}>
+                        <Text 
+                            style={{
+                                alignSelf:'center',
+                                fontSize:25,
+                                color:'gray',
+                                fontWeight:'bold'}}>
+                                Detalles
+                        </Text>
+                        <View 
+                            style={{
+                                flexDirection:'row',
+                                justifyContent:'center'}}>
+                                <View 
+                                    style={{flex:1}}>
+                                    <Text 
+                                        style={{
+                                            textAlign:'center',
+                                            fontWeight:'bold'}}>
+                                                Propietario
+                                    </Text>
+                                    <Text>
+                                        {this.props.navigation.getParam("item").espacio.cuenta}
+                                    </Text>
                                 </View>
-                                <View>
-                                    <Text>Total a pagar:</Text>
+                                <View 
+                                    style={{flex:1}}>
+                                    <Text 
+                                        style={{
+                                            textAlign:'center',
+                                            fontWeight:'bold'}}>
+                                                Tarifa
+                                    </Text>
+                                    <Text 
+                                        style={{textAlign:'center'}}>
+                                            RD${this.props.navigation.getParam("item").espacio.tarifa}.00
+                                    </Text>
                                 </View>
-                                <View>
-                                    <Text>(Hoy)</Text>
+                                <View 
+                                    style={{flex:1}}>
+                                    <Text 
+                                        style={{
+                                            textAlign:'center',
+                                            fontWeight:'bold'}}>
+                                                Hoy
+                                    </Text>
+                                    <Text
+                                        style={{textAlign:'center'}}>
+                                            {this.twelveHoursTimeString(this.timeIndicator().leftHourLim)} - {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}
+                                    </Text>
                                 </View>
                         </View>
-                        <Text style={{color:'red',alignSelf:'center'}}>Cancelar</Text>
+                        <Text 
+                            style={{
+                                color:'red',
+                                alignSelf:'center'}}>
+                                    Cancelar
+                        </Text>
                     </View>
                 </View>
             </SafeAreaView>
@@ -137,6 +229,11 @@ class DetailReservation extends Component{
 const styles = StyleSheet.create({
     container: {
         flex:1
+    },
+    infoArea:{
+        flex:2,
+        paddingVertical:'5%',
+        paddingHorizontal:'3%'
     }
 });
 
