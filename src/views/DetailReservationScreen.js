@@ -133,8 +133,10 @@ class DetailReservation extends Component{
                                 Abierto ∙
                         </Text>
                         <Text 
-                            style={{marginLeft:5}}>
-                                Cierra {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}
+                            style={{
+                                marginLeft:5,
+                                color:'gray'}}>
+                                    Cierra {this.twelveHoursTimeString(this.timeIndicator().rightHourLim)}
                         </Text>
                     </View>
                     <TouchableOpacity
@@ -182,7 +184,8 @@ class DetailReservation extends Component{
                                             fontWeight:'bold'}}>
                                                 Propietario
                                     </Text>
-                                    <Text>
+                                    <Text
+                                        style={{textAlign:'center'}}>
                                         {this.props.navigation.getParam("item").espacio.cuenta}
                                     </Text>
                                 </View>
@@ -213,7 +216,7 @@ class DetailReservation extends Component{
                                     </Text>
                                 </View>
                         </View>
-                        <Text 
+                        <Text
                             style={{
                                 color:'red',
                                 alignSelf:'center'}}>
