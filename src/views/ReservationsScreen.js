@@ -38,7 +38,7 @@ class ReservationsScreen extends Component{
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.screenHeader}>
-          <Text style={styles.screenHeaderText}>Reservations</Text>
+          <Text style={styles.screenHeaderText}>Reservaciones</Text>
         </View>
         {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
           <FlatList

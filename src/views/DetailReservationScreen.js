@@ -92,7 +92,7 @@ class DetailReservation extends Component{
         return(
             <SafeAreaView style={styles.container}>
                 <View style={{height:'10%',backgroundColor:'#384650',justifyContent:'center'}}>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Reservations")}} style={{width:'20%'}}>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Reservaciones")}} style={{width:'20%'}}>
                         <Image source={require('../../assets/sharp_arrow_back_black_48dp.png')}/>
                     </TouchableOpacity>
                 </View>

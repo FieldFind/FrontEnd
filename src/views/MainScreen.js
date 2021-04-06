@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import ReservationsScreen from '../views/ReservationsScreen';
 import ProfileScreen from '../views/ProfileScreen';
+import SupportScreen from '../views/SupportScreen';
 
 class MainScreen extends Component {
   render() {
@@ -26,24 +27,29 @@ class MainScreen extends Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-    Main: MainScreen,
-    Reservations: ReservationsScreen,
-    Profile: ProfileScreen},
+    Mapa: MainScreen,
+    Reservaciones: ReservationsScreen,
+    Perfil: ProfileScreen,
+    Soporte: SupportScreen},
     {
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => {
           const { routeName } = navigation.state;
           let iconSource;
           let tintColor;
-          if(routeName == 'Main'){
+          if(routeName == 'Mapa'){
             iconSource = require('../../assets/mapa.png');
             tintColor = focused ? 'blue' : 'gray';
-          }else if(routeName == 'Reservations'){
+          }else if(routeName == 'Reservaciones'){
             iconSource = require('../../assets/Calendario.png');
             tintColor = focused ? 'blue' : 'gray';
           }
-          else if(routeName == 'Profile'){
+          else if(routeName == 'Perfil'){
             iconSource = require('../../assets/User.png');
+            tintColor = focused ? 'blue' : 'gray';
+          }
+          else if(routeName == 'Soporte'){
+            iconSource = require('../../assets/Help.png');
             tintColor = focused ? 'blue' : 'gray';
           }
           return <Image source={iconSource} style={{height:30, width:30}} tintColor={tintColor}/>
