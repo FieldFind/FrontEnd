@@ -6,6 +6,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import ReservationsScreen from '../views/ReservationsScreen';
 import ProfileScreen from '../views/ProfileScreen';
+import SupportScreen from '../views/SupportScreen';
 
 class MainScreen extends Component {
   render() {
@@ -28,7 +29,8 @@ class MainScreen extends Component {
 const TabNavigator = createBottomTabNavigator({
     Main: MainScreen,
     Reservations: ReservationsScreen,
-    Profile: ProfileScreen},
+    Profile: ProfileScreen,
+    Support: SupportScreen},
     {
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => {
@@ -44,6 +46,10 @@ const TabNavigator = createBottomTabNavigator({
           }
           else if(routeName == 'Profile'){
             iconSource = require('../../assets/User.png');
+            tintColor = focused ? 'blue' : 'gray';
+          }
+          else if(routeName == 'Support'){
+            iconSource = require('../../assets/Help.png');
             tintColor = focused ? 'blue' : 'gray';
           }
           return <Image source={iconSource} style={{height:30, width:30}} tintColor={tintColor}/>
