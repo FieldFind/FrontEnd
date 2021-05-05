@@ -34,11 +34,6 @@ class ReservationsScreen extends Component{
 
   render() {
     const { data, isLoading } = this.state;
-    /**
-     *  <View style={styles.screenHeader}>
-          <Text style={styles.screenHeaderText}>Reservaciones</Text>
-        </View> 
-     */
 
     return (
       <SafeAreaView 
