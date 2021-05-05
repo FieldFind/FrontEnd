@@ -87,12 +87,7 @@ class DetailReservation extends Component{
         timeObject.rightHourLim = this.timeLimits(1,hourRange);
         return timeObject;
     }
-/**
-                    <View style={{flexDirection:'row'}}>                    
-                        <Text>Latitud: {this.props.navigation.getParam("item").espacio.latitud}, </Text>
-                        <Text>Longitud: {this.props.navigation.getParam("item").espacio.longitud}</Text>
-                    </View>
- */
+
     render(){
         return(
             <SafeAreaView 
