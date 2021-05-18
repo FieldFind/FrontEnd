@@ -29,13 +29,13 @@ class DetailReservation extends Component{
         }
     }
 
-    twelveHoursTimeString = (timeString)=>{
+    twelveHoursTimeString = (timeString) => {
         var h = timeString % 12 || 12;
         var ampm = (h < 12 || h === 24) ? "AM" : "PM";
         return h +" "+ampm;
     }
 
-    timeLimits = (limit,hourRange)=>{
+    timeLimits = (limit,hourRange) => {
         let indexLoc = hourRange.indexOf('-');
         let leftLim = hourRange.substring(0,indexLoc);
         let rightLim = hourRange.substring(indexLoc+1);
@@ -45,7 +45,7 @@ class DetailReservation extends Component{
         }
     }
 
-    timeIndicator = ()=>{
+    timeIndicator = () => {
         let timeObject = {
             colorIndicator:'',
             leftHourLim:'',
@@ -86,6 +86,21 @@ class DetailReservation extends Component{
         timeObject.leftHourLim = this.timeLimits(0,hourRange);
         timeObject.rightHourLim = this.timeLimits(1,hourRange);
         return timeObject;
+    }
+
+    cancelReservation = async () => {
+        try{
+            let response = await fetch(`https://fieldfind-backend.herokuapp.com/reservas/${this.props.navigation.getParam("item").id}`,{
+                method:'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({estado: false})
+            })
+        }
+        catch(error){
+            console.error(error)
+        }
     }
 
     render(){
@@ -200,6 +215,7 @@ class DetailReservation extends Component{
                                 <View 
                                     style={{flex:1}}>
                                     <Text 
+                                    
                                         style={{
                                             textAlign:'center',
                                             fontWeight:'bold'}}>
@@ -211,12 +227,17 @@ class DetailReservation extends Component{
                                     </Text>
                                 </View>
                         </View>
-                        <Text
-                            style={{
-                                color:'red',
-                                alignSelf:'center'}}>
-                                    Cancelar
-                        </Text>
+                        <TouchableOpacity
+                            disabled={!this.props.navigation.getParam("item").estado}
+                            onPress={this.cancelReservation}
+                            style={{width:'50%', alignSelf:'center'}}>
+                            <Text
+                                style={{
+                                    color: this.props.navigation.getParam("item").estado ? "red": "gray",
+                                    alignSelf:'center'}}>
+                                        Cancelar
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </SafeAreaView>
