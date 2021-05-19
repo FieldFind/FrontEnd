@@ -4,6 +4,7 @@ export const setData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem("userData", jsonValue);
+    //console.log(jsonValue)
     console.log("Session data stored successfuly");
   } catch (e) {
     console.log(e);

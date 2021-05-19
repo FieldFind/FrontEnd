@@ -12,13 +12,13 @@ class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'space-between',alignItems:'center',padding:'5%'}}>
-              <View style={{width:'85%'}}>
+          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'space-between',alignItems:'center'}}>
+              <View style={{width:'85%', marginLeft: '7.7%', marginTop: '10%'}}>
                 <SearchBar/>
               </View>              
-              <Image 
+              {/* <Image 
                 source={require('../../assets/filter.png')}
-                style={{width:30, height:30}}/>
+                style={{width:30, height:30}}/> */}
           </View>
           <MapView/>       
       </View>

@@ -26,7 +26,7 @@ export default class LoginScreen extends Component {
     );
   }
   storeSession = async (userData) => {
-    await logIn(userData);
+    logIn(userData);
     this.props.navigation.navigate("Menu");
   };
 
@@ -40,6 +40,7 @@ export default class LoginScreen extends Component {
 
       if (result.type === "success") {
         console.log("LoginScreen.js 21 | ", result.user.givenName);
+        console.log(result)
         const userData = {
           email: result.user.email,
           name: result.user.name,

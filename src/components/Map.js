@@ -7,6 +7,7 @@ import SpaceModal from "./Modal";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { clockRunning } from "react-native-reanimated";
+import SearchBar from './SearchBar'
 
 export default function App() {
   const [spaces, setSpaces] = useState([]);
@@ -34,7 +35,7 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container}>  
       <MapView style={styles.map}>
         {isLoading
           ? spaces.map((space) => (
@@ -46,8 +47,12 @@ export default function App() {
                 }}
                 description="Un espacio chill"
               >
-                <TouchableOpacity onPress={() => {setIsModalOpen(true); setCurrentSpace(space)} }>
-                  
+                <TouchableOpacity
+                  onPress={() => {
+                    setIsModalOpen(true);
+                    setCurrentSpace(space);
+                  }}
+                >
                   <Image
                     style={{ height: 50, width: 50 }}
                     source={require("../../assets/soccerBall.png")}
@@ -59,8 +64,7 @@ export default function App() {
         <View>
           {isModalOpen ? (
             <View>
-              <SpaceModal space={currentSpace}/>
-              <Text > Bruh </Text>
+              <SpaceModal space={currentSpace} isOpen={setIsModalOpen} />
             </View>
           ) : null}
         </View>
@@ -74,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   map: {
-    zIndex: -1,
     flex: 1,
   },
 });
