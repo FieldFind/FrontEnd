@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button, TouchableOpacity } from "react-native-elements";
 import TimePicker from "./TimePicker";
+import {result} from "../views/LogInScreen"
+
 
 const apiCall = async () =>{
   let data = await fetch('https://fieldfind-backend.herokuapp.com/users');
   let json = await data.json();
-  console.log(json[0])
   return json
 }
 
-const apiAxios = async () => {
+const apiAxios = async (space) => {
   axios.post('https://fieldfind-backend.herokuapp.com/reservas', {
     hora_i: "10:30:00",
     hora_f: "11:30:00",
@@ -19,13 +20,29 @@ const apiAxios = async () => {
     estado: true,
     comentario: null,
     cuenta: null,
-    users_permissions_user: await apiCall(),
     published_at: "2021-03-03T21:46:45.557Z",
     created_at: "2021-03-03T21:46:41.171Z",
     updated_at: "2021-03-03T21:46:45.592Z",
+    espacio: {
+      id: space.id,
+      nombre_espacio: space.nombre_espacio,
+      latitud: space.latitud,
+      longitud: space.longitud,
+      tipo_espacio: space.tipo_espacio,
+      capacidad: space.capacidad,
+      tarifa: space.tarifa,
+      cuenta: null,
+      horario: 1,
+      published_at: space.published_at,
+      created_at: space.created_at,
+      updated_at: space.updated_at,
+      url_imagen: space.url_imagen,
+      users_permissions_user: 1
+    },
+    users_permissions_user: await apiCall()[0]
   })
   .then((response) => {
-    console.log(response);
+    console.log(response)
   }, (error) => {
     console.log(error);
   });
@@ -34,9 +51,7 @@ const apiAxios = async () => {
 
 const SpaceModal = (props) => {
   const [selectedDate, setSelectedDate] = useState("");
-  console.log(selectedDate);
-  console.log(props);
-  apiAxios();
+  apiCall();
   return (
     <View style={styles.centeredView}>
       <View>
@@ -71,8 +86,7 @@ const SpaceModal = (props) => {
           style={{ color: "black" }}
           accessibilityLabel="Learn more about this purple button"
           disabled={selectedDate.length < 1 ? true : false}
-          onPress={() => {null
-          }}
+          onPress={() => { apiAxios(props.space)}}
         />
       </View>
 
