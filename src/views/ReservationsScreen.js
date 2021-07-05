@@ -50,7 +50,7 @@ class ReservationsScreen extends Component{
           data={data}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity 
+            <TouchableOpacity
               activeOpacity={0.5}
               onPress={()=>{
                 this.props.navigation.navigate("DetailReservation",
@@ -61,7 +61,7 @@ class ReservationsScreen extends Component{
                 <View 
                   style={styles.item}>                
                   <Text 
-                    style={styles.itemText}>{
+                    style={item.estado ? styles.itemText: styles.inactiveItemText}>{
                       item.espacio.nombre_espacio}
                   </Text>
                 </View>
@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize:20,
     fontWeight:'bold',
+  },
+  inactiveItemText: {
+    fontSize:20,
+    fontWeight:'bold',
+    opacity: 0.5,
   },
   screenHeader:{
     height:'15%',
