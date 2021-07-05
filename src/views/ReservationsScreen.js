@@ -7,7 +7,8 @@ import {
   Text, 
   ActivityIndicator, 
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 class ReservationsScreen extends Component{
@@ -51,11 +52,21 @@ class ReservationsScreen extends Component{
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity
-              disabled={!item.estado}
               activeOpacity={0.5}
-              onPress={()=>{
-                this.props.navigation.navigate("DetailReservation",
-                {item: item})}}>              
+              onPress={item.estado ? ()=>{
+                this.props.navigation.navigate(
+                  "DetailReservation",
+                  {item: item})
+                } : ()=>{Alert.alert(
+                  "⚠",
+                  "La reservación está cancelada.",
+                  [{
+                    text: "OK", 
+                    onPress: () => {
+                      this.props.navigation.navigate("DetailReservation",
+                      {item: item})
+                    }
+                  }])}}>              
                 <Image
                   source={{uri: item.espacio.url_imagen}}
                   style={{width:'100%', height: 150}}/>         

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Text,
+  Alert,
 } from "react-native";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
@@ -109,6 +110,32 @@ class DetailReservation extends Component {
     timeObject.rightHourLim = this.timeLimits(1, hourRange);
     return timeObject;
   };
+
+  cancelReservation = async () => {
+    try{
+      Alert.alert(
+        "Advertencia",
+        "¿Está seguro que desea cancelar la reservación?",
+        [{
+          text: "Continuar",
+          onPress: () => {
+            fetch(`https://fieldfind-backend.herokuapp.com/reservas/${this.props.navigation.getParam("item").id}`,{
+              method:'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({estado: false})
+            })
+          }
+        },
+        {
+          text: "Cancelar"
+        }]
+      );
+    } catch(error){
+      console.error(error)
+    }
+  }
 
   render() {
     return (
@@ -249,14 +276,17 @@ class DetailReservation extends Component {
                 </Text>
               </View>
             </View>
-            <Text
-              style={{
-                color: "red",
-                alignSelf: "center",
-              }}
-            >
-              Cancelar
-            </Text>
+            <TouchableOpacity
+              disabled={!this.props.navigation.getParam("item").estado}
+              onPress={this.cancelReservation}
+              style={{width:'50%', alignSelf:'center'}}>
+                <Text
+                  style={{
+                  color: this.props.navigation.getParam("item").estado ? "red": "gray",
+                  alignSelf:'center'}}>
+                    Cancelar
+                </Text>
+            </TouchableOpacity>
           </View>
         </View>
         {this.state.isMapOpen ? (
