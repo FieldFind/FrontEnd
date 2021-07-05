@@ -51,6 +51,7 @@ class ReservationsScreen extends Component{
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity
+              disabled={!item.estado}
               activeOpacity={0.5}
               onPress={()=>{
                 this.props.navigation.navigate("DetailReservation",
