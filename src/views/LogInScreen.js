@@ -17,7 +17,7 @@ import * as Google from "expo-google-app-auth";
 const IOS_CLIENT_ID =
   "951963137071-kt6dadc0tnj01q2i1ov686l2n32tljhf.apps.googleusercontent.com";
 const ANDROID_CLIENT_ID =
-  "951963137071-i39cq9tc88r9gvom3bebsfkv4606nfr0.apps.googleusercontent.com";
+  "951963137071-kq9dgdcnje3not2tmiiijc4benocgmos.apps.googleusercontent.com";
 
 export default class LoginScreen extends Component {
   componentDidMount() {
@@ -34,7 +34,8 @@ export default class LoginScreen extends Component {
     try {
       const result = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
-        androidClientId: ANDROID_CLIENT_ID,
+        androidClientId:
+          "951963137071-kq9dgdcnje3not2tmiiijc4benocgmos.apps.googleusercontent.com",
         behavior: "web",
         scopes: ["profile", "email"],
       });
