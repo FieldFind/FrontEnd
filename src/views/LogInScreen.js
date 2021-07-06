@@ -35,12 +35,13 @@ export default class LoginScreen extends Component {
       const result = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
+        behavior: "web",
         scopes: ["profile", "email"],
       });
 
       if (result.type === "success") {
         console.log("LoginScreen.js 21 | ", result.user.givenName);
-        console.log(result)
+        console.log(result);
         const userData = {
           email: result.user.email,
           name: result.user.name,

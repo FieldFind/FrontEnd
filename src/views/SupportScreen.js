@@ -42,7 +42,7 @@ export default class SupportScreen extends Component {
             Chat
           </Text>
           <Text style={{ fontSize: 18, alignSelf: "center", bottom: 30 }}>
-            Soporte@FieldFind.com
+            https://fieldfind.tecno-logica.org/
           </Text>
         </View>
       </SafeAreaView>
