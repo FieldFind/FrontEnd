@@ -10,7 +10,7 @@ export default class MyComponent extends React.Component {
     const { firstQuery } = this.state;
     return (
       <Searchbar
-      style={{marginTop: 60}}
+        style={{borderRadius:25}}
         placeholder="Search"
         onChangeText={query => { this.setState({ firstQuery: query })}}
         value={firstQuery}

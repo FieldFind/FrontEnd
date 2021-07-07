@@ -7,9 +7,9 @@ import {
   Text, 
   ActivityIndicator, 
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
-import FooterNav from '../components/FooterNav';
 
 class ReservationsScreen extends Component{
   constructor(props) {
@@ -25,7 +25,7 @@ class ReservationsScreen extends Component{
     try {
       let response = await fetch('https://fieldfind-backend.herokuapp.com/reservas/');
       let json = await response.json();
-      this.setState({ data: json });
+      this.setState({ data: json }, ()=> {console.log(json[0].espacio.latitud)});
     } catch (error) {
       console.error(error);
     } finally {
@@ -35,33 +35,52 @@ class ReservationsScreen extends Component{
 
   render() {
     const { data, isLoading } = this.state;
+    console.log(data[0]?.espacio?.capacidad)
 
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.screenHeader}>
-          <Text style={styles.screenHeaderText}>Reservations</Text>
-        </View>
-        {isLoading ? <ActivityIndicator color='blue' size='large' style={{alignSelf:'center',marginTop:'50%'}}/> : (
-          <FlatList
-            data={data}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => (
-              <TouchableOpacity 
+      <SafeAreaView 
+        style={styles.container}>
+        {isLoading ? 
+        <ActivityIndicator 
+          color='blue' 
+          size='large' 
+          style={{
+              alignSelf:'center',
+              marginTop:'50%'}}/> : 
+        (<FlatList
+          data={data}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity
               activeOpacity={0.5}
-              onPress={()=>{this.props.navigation.navigate("DetailReservation",{item: item})}}>              
-                <Image //placeholder image
-                  source={{uri: 'https://images.pexels.com/photos/4071393/pexels-photo-4071393.jpeg'}}
-                  style={{width:'100%', height: 150}} />         
-                <View style={styles.item}>
-                
-                  <Text style={styles.itemText}>{item.espacio.nombre_espacio}</Text>
+              onPress={item.estado ? ()=>{
+                this.props.navigation.navigate(
+                  "DetailReservation",
+                  {item: item})
+                } : ()=>{Alert.alert(
+                  "⚠",
+                  "La reservación está cancelada.",
+                  [{
+                    text: "OK", 
+                    onPress: () => {
+                      this.props.navigation.navigate("DetailReservation",
+                      {item: item})
+                    }
+                  }])}}>              
+                <Image
+                  source={{uri: item.espacio.url_imagen}}
+                  style={{width:'100%', height: 150}}/>         
+                <View 
+                  style={styles.item}>                
+                  <Text 
+                    style={item.estado ? styles.itemText: styles.inactiveItemText}>{
+                      item.espacio.nombre_espacio}
+                  </Text>
                 </View>
-              </TouchableOpacity>
+            </TouchableOpacity>
             )}
-          />
-        )}
-      </SafeAreaView>
-      
+        />)}
+      </SafeAreaView>      
     );
   }
 };
@@ -83,27 +102,21 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'bold',
   },
+  inactiveItemText: {
+    fontSize:20,
+    fontWeight:'bold',
+    opacity: 0.5,
+  },
   screenHeader:{
     height:'15%',
     backgroundColor: '#384650',
-    flexDirection:'row',
-    justifyContent:'space-between'
+    padding:'2%',
+    justifyContent:'flex-end'
   },
   screenHeaderText:{
     color:'#ffffff',
     fontSize:25,
-    fontWeight:'bold',
-    marginVertical:0,
-    marginHorizontal:10,
-    alignSelf:'flex-end'
-  },
-  screenHeaderImage:{
-    marginRight:'10%',
-    marginTop:'10%',
-    tintColor:'#ffffff',
-    height: 30,
-    width: 30,
-    alignSelf:'flex-end'
+    fontWeight:'bold'
   }
 });
 

@@ -1,70 +1,58 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Button, Image } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import MapView from "../components/Map";
 import SearchBar from '../components/SearchBar'
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import ReservationsScreen from '../views/ReservationsScreen';
-//import FooterNav from '../components/FooterNav'
-
-const mapIcon = require('../../assets/mapa.png');
-//const calendarIcon = require('../../assets/Calendario.png');
-const userIcon = require('../../assets/User.png');
-const settingIcon = require('../../assets/setting.png')
-const filterIcon = require('../../assets/filter.png')
-
+import ProfileScreen from '../views/ProfileScreen';
+import SupportScreen from '../views/SupportScreen';
 
 class MainScreen extends Component {
-  /*
-  static defaultNavigationOptions = {
-    tabBarIcon:({focused}) => {
-      const iconimg = focused ? require('../../assets/mapa.png') : require('../../assets/mapa.png');
-      return (
-        <Image 
-            source={iconimg}
-            style={{width:10, height:10}}
-        />);
-    }
-  };*/
-
   render() {
     return (
       <View style={styles.container}>
-        <Text>Field Find</Text>
-        <View style={styles.bar} >
-          <View style={styles.searchBox} >
-            <View style={styles.searchBar}>
-        <SearchBar/>
-        </View>
-        <Text style={{top:'100%'}}> Field Find </Text>
-        <Image source={filterIcon} 
-        style={styles.filterIcon}/>
-        </View>
-        </View>
-        <MapView/>
-        
+          <View style={{height:'15%',flexDirection:'row',backgroundColor:'#384650',justifyContent:'space-between',alignItems:'center'}}>
+              <View style={{width:'85%', marginLeft: '7.7%', marginTop: '10%'}}>
+                <SearchBar/>
+              </View>              
+              {/* <Image 
+                source={require('../../assets/filter.png')}
+                style={{width:30, height:30}}/> */}
+          </View>
+          <MapView/>       
       </View>
-    );/**<FooterNav style={styles.FooterNav}/> */
+    );
   }
 }
 
 const TabNavigator = createBottomTabNavigator({
-    Main: MainScreen,
-    Reservations: ReservationsScreen},
+    Mapa: MainScreen,
+    Reservaciones: ReservationsScreen,
+    Perfil: ProfileScreen,
+    Soporte: SupportScreen},
     {
       defaultNavigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => {
           const { routeName } = navigation.state;
-          let iconName;
+          let iconSource;
           let tintColor;
-          if(routeName == 'Main'){
-            iconName = focused ? require('../../assets/mapa.png') : require('../../assets/mapa.png');
+          if(routeName == 'Mapa'){
+            iconSource = require('../../assets/mapa.png');
             tintColor = focused ? 'blue' : 'gray';
-          }else if(routeName == 'Reservations'){
-            iconName = focused ? require('../../assets/Calendario.png') : require('../../assets/Calendario.png');
+          }else if(routeName == 'Reservaciones'){
+            iconSource = require('../../assets/Calendario.png');
             tintColor = focused ? 'blue' : 'gray';
           }
-          return <Image source={iconName} style={{height:30, width:30}} tintColor={tintColor}/>
+          else if(routeName == 'Perfil'){
+            iconSource = require('../../assets/User.png');
+            tintColor = focused ? 'blue' : 'gray';
+          }
+          else if(routeName == 'Soporte'){
+            iconSource = require('../../assets/Help.png');
+            tintColor = focused ? 'blue' : 'gray';
+          }
+          return <Image source={iconSource} style={{height:30, width:30}} tintColor={tintColor}/>
         }
       }),
       tabBarOptions: {
@@ -76,47 +64,7 @@ const TabNavigator = createBottomTabNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  FooterNav: {
-    position: 'absolute'
-  },
-  bar: {
-    zIndex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "13%",
-    top: '0%',
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9,
-  },
-  searchBar: {
-    position: "absolute",
-    left: '10%',
-    width: '80%',
-  },
-  searchBox: {
-    position: "absolute",
-    top: '60%',
-    width: '95%',
-    left: '3%'
-  },
-  filterIcon: {
-    position: 'absolute',
-    right:'0%',
-    width: 34,
-    height: 34
+    flex: 1
   }
 });
 
