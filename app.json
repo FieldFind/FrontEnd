@@ -23,7 +23,13 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "host.exp.exponent",
-      "versionCode": 1
+      "versionCode": 1,
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyBX6xcXcLmlGA-to3em0t57q2N_QxADnx8",
+          "certificateHash": "6B:84:BF:46:96:32:9D:C2:B3:E6:5F:01:4D:54:FC:49:D3:9E:3B:06"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
